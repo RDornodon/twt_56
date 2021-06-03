@@ -1,3 +1,5 @@
+from itertools import zip_longest
+from pprint import pprint
 import sys
 from time import perf_counter
 from typing import Callable
@@ -18,7 +20,7 @@ class Capturing(list):
         sys.stdout = self._stdout
 
 
-@mock.patch('builtins.input', side_effect=["1010"] + test_inp)
+@mock.patch('builtins.input', side_effect=["1011"] + test_inp)
 def test_challenge_56_1(input: Callable) -> None:
     
     with Capturing() as output:
@@ -29,19 +31,19 @@ def test_challenge_56_1(input: Callable) -> None:
         end = perf_counter()
         
     passed = i = ii = oi = 0
-    for i in range(1, 1011):
+    for i in range(1, 1012):
         c = int(test_inp[ii].split()[0])
         inp = test_inp[ii: ii + c + 1]
-        out, exp = output[oi:oi + c ], test_out[oi:oi + c ]
+        out, exp = output[oi:oi + c], test_out[oi:oi + c]
         ii += c + 1
         oi += c
         if out != exp:
-            print(f'Test nr:{i}\nInput:')
-            print(*inp, sep='\n')
+            print(f'Test nr:{i}\n    inp:')
+            pprint(inp)
             print('Your output:')
-            print(*out, sep='\n')
+            pprint(out)
             print('expected:')
-            print(*exp, sep='\n')
+            pprint(exp)
         else:
             passed += 1
 
@@ -52,4 +54,3 @@ def test_challenge_56_1(input: Callable) -> None:
 if __name__ == "__main__":
     test_challenge_56_1()
 
-# https://discord.com/channels/501090983539245061/680851838857117770/849993489616994324
