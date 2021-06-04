@@ -25,7 +25,8 @@ def test_challenge_56_2(input: Callable) -> None:
     with Capturing() as output:
         start = perf_counter()
     
-        import challenge_56_2  # change name to your file with solution name without extension
+        # import challenge_56_2  # change name to your file with solution name without extension
+        import twt_56_2
         
         end = perf_counter()
         
